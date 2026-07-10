@@ -65,7 +65,7 @@ export default function Contato() {
                     <Badge color="brand" className="mb-4">Fale conosco</Badge>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">Entre em contato</h1>
                     <p className="text-dark-300 text-lg max-w-xl mx-auto">
-                        Solicite uma demonstração, tire dúvidas ou descubra qual sistema é ideal para o seu negócio.
+                        Solicite uma demonstração, tire dúvidas ou descubra qual sistema é ideal para o seu negócio. Sem custo, sem compromisso.
                     </p>
                 </div>
             </section>
@@ -183,6 +183,22 @@ export default function Contato() {
                         <div className="mt-8 bg-brand-50 border border-brand-200 rounded-xl p-5">
                             <p className="text-sm font-semibold text-brand-700 mb-1">⚡ Tempo de resposta</p>
                             <p className="text-sm text-brand-600">Nossa equipe responde em até 1 dia útil.</p>
+                        </div>
+
+                        <div className="mt-4 bg-dark-50 border border-dark-100 rounded-xl p-5">
+                            <p className="text-sm font-semibold text-dark-900 mb-3">O que você recebe</p>
+                            <ul className="space-y-2">
+                                {[
+                                    'Demonstração personalizada para o seu negócio',
+                                    'Conversa direta com quem entende de energia solar',
+                                    'Indicação honesta do sistema certo — mesmo que seja mais de um',
+                                ].map((item, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-dark-600">
+                                        <span className="text-brand-500 mt-0.5 flex-shrink-0">✓</span>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>

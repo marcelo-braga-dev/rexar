@@ -76,14 +76,21 @@ export default function Produtos() {
 
                                     <p className="text-dark-600 mb-6 leading-relaxed">{p.descricao}</p>
 
-                                    <ul className="space-y-2 mb-8">
-                                        {p.beneficios.slice(0, 4).map((b, i) => (
-                                            <li key={i} className="flex items-start gap-2 text-sm text-dark-700">
-                                                <span className="text-brand-500 mt-0.5 flex-shrink-0">✓</span>
-                                                <span><strong>{b.titulo}</strong> — {b.descricao}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    <div className="bg-white/60 border border-dark-100 rounded-xl p-4 mb-6">
+                                        <p className="text-xs font-semibold text-dark-400 uppercase tracking-wide mb-2">Resultados na prática</p>
+                                        <ul className="space-y-2">
+                                            {p.resultados.slice(0, 3).map((r, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-sm text-dark-700">
+                                                    <span className="text-brand-500 mt-0.5 flex-shrink-0">✓</span>
+                                                    {r}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <p className="text-xs text-dark-500 mb-6">
+                                        <span className="font-semibold text-dark-600">Ideal para:</span> {p.paraQuem}
+                                    </p>
 
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <Link
@@ -96,7 +103,7 @@ export default function Produtos() {
                                             href="/contato"
                                             className="px-5 py-2.5 border border-dark-300 text-dark-700 text-sm font-semibold rounded-lg hover:border-brand-500 hover:text-brand-500 transition-colors text-center"
                                         >
-                                            Solicitar demo
+                                            Solicitar demonstração
                                         </Link>
                                     </div>
                                 </div>
@@ -111,14 +118,24 @@ export default function Produtos() {
                 <div className="max-w-2xl mx-auto px-4 sm:px-6">
                     <h2 className="text-2xl md:text-3xl font-bold mb-4">Não sabe por onde começar?</h2>
                     <p className="text-dark-300 mb-8">
-                        Fale com a nossa equipe e descubra qual sistema se encaixa melhor na sua operação.
+                        Fale com a nossa equipe e descubra qual sistema se encaixa melhor na sua operação — sem custo e sem compromisso.
                     </p>
-                    <Link
-                        href="/contato"
-                        className="inline-block px-8 py-4 bg-brand-500 text-white font-bold rounded-lg hover:bg-brand-600 transition-colors"
-                    >
-                        Falar com um especialista
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link
+                            href="/contato"
+                            className="inline-block px-8 py-4 bg-brand-500 text-white font-bold rounded-lg hover:bg-brand-600 transition-colors"
+                        >
+                            Falar com um especialista
+                        </Link>
+                        <a
+                            href="https://wa.me/5500000000000"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:border-white/60 transition-colors"
+                        >
+                            Chamar no WhatsApp
+                        </a>
+                    </div>
                 </div>
             </section>
         </AppLayout>

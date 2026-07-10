@@ -85,6 +85,19 @@ const etapas = [
     { num: '04', label: 'Gestão recorrente', produto: 'GD Solar ERP', slug: 'gd-solar-erp', cor: 'text-green-600' },
 ];
 
+const confianca = [
+    'Feito 100% para o setor de energia solar',
+    'Suporte direto com quem desenvolve o produto',
+    'Conformidade com a LGPD em todos os sistemas',
+];
+
+const desafios = {
+    'levelead-crm': 'Leads se perdem entre WhatsApp, planilha e e-mail, sem histórico único do atendimento.',
+    'crm-solar': 'Cada vendedor dimensiona o sistema solar do seu jeito, sem padrão nem revisão.',
+    'solar-shop': 'Vender só por WhatsApp e telefone significa perder cliente fora do horário comercial.',
+    'gd-solar-erp': 'Leitura manual de fatura e cobrança na mão tomam horas da equipe toda semana.',
+};
+
 export default function Home() {
     return (
         <AppLayout
@@ -102,13 +115,13 @@ export default function Home() {
                 <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 md:py-36">
                     <Badge color="brand" className="mb-6">Especialista em energia solar fotovoltaica</Badge>
                     <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl mb-6">
-                        O software que o setor solar
-                        <span className="text-brand-400"> precisava</span>
+                        Pare de perder vendas para
+                        <span className="text-brand-400"> planilha e processo manual</span>
                     </h1>
                     <p className="text-dark-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-                        Da prospecção do primeiro lead até a gestão recorrente da energia gerada. A Rexar oferece um ecossistema completo de sistemas para empresas de energia solar fotovoltaica.
+                        Da prospecção do primeiro lead até a gestão recorrente da energia gerada, a Rexar cobre cada etapa do negócio solar com sistemas feitos especificamente para o setor — não ferramentas genéricas adaptadas na marra.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4 mb-8">
                         <Link
                             href="/produtos"
                             className="px-8 py-4 bg-brand-500 text-white font-semibold rounded-lg hover:bg-brand-600 transition-colors text-center"
@@ -119,9 +132,16 @@ export default function Home() {
                             href="/contato"
                             className="px-8 py-4 border border-dark-500 text-white font-semibold rounded-lg hover:border-brand-400 hover:text-brand-400 transition-colors text-center"
                         >
-                            Falar com vendas
+                            Solicitar demonstração gratuita
                         </Link>
                     </div>
+                    <ul className="flex flex-col sm:flex-row flex-wrap gap-x-8 gap-y-2">
+                        {confianca.map((item, i) => (
+                            <li key={i} className="flex items-center gap-2 text-sm text-dark-300">
+                                <span className="text-brand-400">✓</span> {item}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </section>
 
@@ -154,8 +174,11 @@ export default function Home() {
                                     <h3 className="text-dark-900 font-bold text-lg mb-2 group-hover:text-brand-600 transition-colors">
                                         {p.nome}
                                     </h3>
-                                    <p className="text-dark-500 text-sm leading-relaxed line-clamp-3">
+                                    <p className="text-dark-500 text-sm leading-relaxed line-clamp-3 mb-3">
                                         {p.tagline}
+                                    </p>
+                                    <p className="text-dark-400 text-xs leading-relaxed line-clamp-2">
+                                        <span className="font-semibold text-dark-600">Resolve:</span> {desafios[p.slug]}
                                     </p>
                                     <span className="mt-4 inline-flex items-center text-sm font-semibold text-brand-500 group-hover:gap-2 transition-all">
                                         Saiba mais <span className="ml-1">→</span>
@@ -234,14 +257,25 @@ export default function Home() {
                         Pronto para transformar sua operação solar?
                     </h2>
                     <p className="text-brand-100 text-lg mb-8">
-                        Solicite uma demonstração gratuita e veja como os sistemas da Rexar se encaixam no seu negócio.
+                        Solicite uma demonstração gratuita e veja como os sistemas da Rexar se encaixam no seu negócio. Sem custo, sem compromisso.
                     </p>
-                    <Link
-                        href="/contato"
-                        className="inline-block px-8 py-4 bg-white text-brand-600 font-bold rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                        Solicitar demonstração gratuita
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link
+                            href="/contato"
+                            className="inline-block px-8 py-4 bg-white text-brand-600 font-bold rounded-lg hover:bg-brand-50 transition-colors"
+                        >
+                            Solicitar demonstração gratuita
+                        </Link>
+                        <a
+                            href="https://wa.me/5500000000000"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block px-8 py-4 border border-white/40 text-white font-bold rounded-lg hover:bg-white/10 transition-colors"
+                        >
+                            Falar no WhatsApp
+                        </a>
+                    </div>
+                    <p className="mt-5 text-sm text-brand-100">Nossa equipe responde em até 1 dia útil.</p>
                 </div>
             </section>
         </AppLayout>
