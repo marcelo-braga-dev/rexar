@@ -47,6 +47,24 @@ php artisan config:clear # limpar cache de config
 - Toda página usa o `AppLayout` como wrapper
 - Cores e tipografia são definidas exclusivamente em `app.css` via `@theme`
 - Slugs dos produtos: `levelead-crm`, `gd-solar-erp`, `solar-shop`, `crm-solar`
+- O Header (`Components/Layout/Header.jsx`) tem submenu de "Produtos" (dropdown no desktop, accordion no mobile) gerado a partir de `data/produtos.js` — não precisa editar o Header ao adicionar/remover produto
+
+## Schema de `data/produtos.js`
+
+Além de `slug`, `nome`, `categoria`, `tagline`, `descricao`, `cor`, `icone`, `paraQuem` e `beneficios` (funcionalidades), cada produto tem:
+
+| Campo | Uso |
+|---|---|
+| `dores` / `resultados` | Arrays **pareados por índice** (mesmo tamanho) — alimentam a seção "Antes/Depois" da página de produto; `dores[i]` sempre corresponde a `resultados[i]` |
+| `comoFunciona` | 3-5 passos do fluxo do produto |
+| `diferenciais` | Bullets de "por que escolher" |
+| `faq` | Perguntas frequentes (accordion) |
+| `personas` *(opcional)* | `{ persona, entrega }` — só nos produtos com essa segmentação documentada (hoje: LeveLead CRM, GD Solar ERP) |
+| `planos` *(opcional)* | `{ nome, publico, inclui }` — sugestão de tiers sem preço fixo, venda consultiva (hoje: GD Solar ERP, Solar Shop) |
+
+`Pages/Produto.jsx` renderiza cada produto com uma combinação diferente de variantes visuais (config `PRODUTO_STYLE` no topo do arquivo) para que as 4 páginas não pareçam o mesmo template recolorido — ver `docs/design-system.md`.
+
+Conteúdo detalhado (tabelas de dor por perfil, módulos completos, mensagens-chave) está em `docs/produtos.md`; `produtos.js` é a versão condensada usada no site.
 
 ## Produtos do site
 

@@ -58,7 +58,7 @@ Na Fase 1, os produtos são conteúdo estático — não precisam de banco de da
 AppLayout (wrapper de todas as páginas)
   ├── Header
   │     ├── Logo
-  │     └── navegação (links)
+  │     └── navegação (links + submenu "Produtos" gerado de data/produtos.js)
   ├── <conteúdo da página>
   └── Footer
 
@@ -66,6 +66,10 @@ Componentes UI reutilizáveis:
   ├── Button (variantes: primary, secondary, outline, ghost, dark)
   └── Badge (cores: blue, green, orange, yellow, brand, dark)
 ```
+
+### Personalização por produto em `Pages/Produto.jsx`
+
+As 4 páginas de produto usam o mesmo componente, mas não o mesmo layout: um objeto `PRODUTO_STYLE` (por slug) escolhe, para cada produto, qual variante de comparação "Antes/Depois" (`linha` | `timeline`) e qual variante de "Funcionalidades" (`grid` | `tiles` | `chips` | `checklist`) renderizar, além de decidir se o hero mostra estatísticas, tags ou nada. Isso evita que as páginas pareçam o mesmo template recolorido. Seções como `personas` e `planos` só aparecem quando o produto tem esses campos em `data/produtos.js`. Detalhes de cada variante em `docs/design-system.md`.
 
 ## Rotas
 
