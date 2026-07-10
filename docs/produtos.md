@@ -62,23 +62,160 @@ Empresas com modelo de assinatura/geração compartilhada, administradoras de us
 
 **Slug:** `solar-shop`
 **Categoria:** E-commerce · Equipamentos Solares
-**Tagline:** Sua loja virtual de energia solar, pronta para vender.
+**Tagline:** A única plataforma de e-commerce feita para o setor solar — não uma loja genérica adaptada.
 
-**Descrição:**
-E-commerce completo para venda de equipamentos de energia solar (painéis, inversores, estruturas, kits) para consumidor final ou B2B. Inclui simulador de economia, montador de kits e painel de consultor.
+> **Nota:** O nome interno do repositório é `solmar-loja`. Usar apenas "Solar Shop" em todo contexto público.
+
+**Resumo executivo:**
+Solar Shop é uma plataforma de e-commerce completa e pronta para uso, especializada no setor fotovoltaico. Em vez de gastar 6–12 meses adaptando Shopify/VTEX/Nuvemshop genéricos, o cliente assina o Solar Shop e tem tudo pronto: loja B2C, portal B2B, programa de consultores/parceiros e motor de propostas comerciais — integrado, testado e em produção.
 
 **Para quem é:**
-Distribuidoras e integradores que vendem equipamentos online, para consumidor final ou revenda.
+Distribuidoras de equipamentos solares, integradoras, revendedores de equipamentos fotovoltaicos e EPCs que também revendem material.
 
-**Funcionalidades:**
-- Loja virtual completa (carrinho, checkout, busca, comparação)
-- Montador de kits solares personalizados
-- Simulador de economia de energia
-- Área B2B para integradores
-- Painel de consultor (propostas e orçamentos)
-- Blog integrado para SEO
-- Alertas de estoque e newsletter
-- Login social e 2FA
+---
+
+### Dores do mercado que o produto resolve
+
+| Perfil | Dor | Como o Solar Shop resolve |
+|---|---|---|
+| **Distribuidor de equipamentos** | Vende só por WhatsApp/telefone, perde vendas fora do horário comercial | Loja 24/7 com carrinho, checkout completo, estoque sincronizado |
+| **Integrador/instalador solar** | Orçamentos manuais em planilha, cálculo manual de kWp | Simulador solar automático + Kit Builder + proposta em PDF em minutos |
+| **Empresa com rede de revenda** | Sem preços diferenciados por tipo de parceiro | Tabelas de preço automáticas por perfil (Público/Consultor/Integrador/Distribuidor) |
+| **Negócio com vendedores externos** | Comissionamento manual, sem visibilidade de metas | Painel do Consultor com KPIs, metas, comissão estimada e funil de propostas |
+| **Empresa que compra de distribuidor (ex. Edeltec)** | Recadastro manual toda vez que o catálogo muda | Sincronização automática de catálogo (diária + de hora em hora) via API |
+| **Varejistas preocupados com LGPD** | Medo de vazamento de dados, multas | 2FA obrigatório para admins, auditoria completa, criptografia, rate limiting |
+| **Time comercial com problema de carrinho abandonado** | Sem follow-up automático | Recuperação de carrinho abandonado automatizada por e-mail (após 2h) |
+
+---
+
+### Funcionalidades por pilar
+
+#### Vitrine e experiência de compra (consumidor final)
+
+- **Simulador de economia solar** — calcula kWp necessário, número de painéis, economia mensal/anual, payback, CO₂ evitado. Usa tarifas reais da ANEEL por estado (27 estados) e irradiância solar regional. Gera proposta em PDF profissional — gerador de leads qualificados.
+- **Kit Builder (Monte seu Kit)** — wizard em 4 passos (Painel → Inversor → Estrutura → Cabos) com total e simulação de parcelamento em tempo real.
+- **Galeria de produto profissional** — zoom 3×, lightbox, thumbnails, sticky scroll.
+- **Comparador de produtos** — até 4 produtos lado a lado com specs técnicas coloridas.
+- **Busca inteligente (Meilisearch)** — autocomplete instantâneo, filtros por marca/preço/estoque/promoção, full-text tolerante a erro de digitação.
+- **Reviews com fotos** — avaliações de clientes com upload de até 4 fotos.
+- **Perguntas e Respostas por produto** — reduz abandono por incerteza técnica.
+- **Frete grátis dinâmico** configurável pelo admin (sem deploy) com barra de progresso no carrinho.
+- **Calculadora de frete por CEP** (integração ViaCEP) com PAC/SEDEX por faixa.
+- **Cross-sell / Upsell automático** — baseado em co-ocorrência real de pedidos.
+- **Cupons de desconto** (percentual, valor fixo, frete grátis) e **Flash Sales com contador regressivo**.
+- **Prova social ao vivo** — "X pessoas vendo agora", vendidos no mês, avisos de estoque baixo.
+- **Botão flutuante de WhatsApp**.
+- **Checkout completo** — PIX (com desconto configurável), Boleto, Cartão parcelado em até 12x, validação de estoque anti-overselling.
+- **Wishlist compartilhável** — cliente gera link público da lista de favoritos.
+- **Programa de fidelidade** — pontos automáticos por compra (1% do valor), histórico e resgate.
+- **Alertas "avisar quando chegar"** — captura o lead mesmo com produto sem estoque.
+- **Recuperação de carrinho abandonado** — e-mail automático após 2h de inatividade.
+- **Blog integrado** — conteúdo educativo sobre energia solar com SEO orgânico.
+- **Newsletter com double opt-in** — captação de leads compatível com LGPD.
+
+#### Motor de vendas multicanal B2B (principal diferencial)
+
+- **Tabelas de preço automáticas por perfil** — Público (varejo), Consultor (−12%), Integrador (−18%), Distribuidor (−25%), configuráveis livremente. Mesmo catálogo, mesmo site, preços diferentes por quem está logado.
+- **Portal B2B dedicado** — landing própria, cadastro por CNPJ, fluxo de aprovação (pendente → ativo/rejeitado/suspenso), atribuição automática de tabela de preço, limite de crédito e prazo configuráveis, gestão de projetos/obras da empresa parceira.
+- **Painel do Consultor** — dashboard com receita do mês, comissão estimada, taxa de conversão, progresso de meta, funil de propostas (gráfico de pizza), listagem de propostas recentes.
+- **Motor de Propostas Comerciais** — consultor monta proposta com itens e descontos, envia por e-mail com link público; cliente visualiza, aceita ou recusa sem login; geração de PDF profissional; timeline completa (enviada → visualizada → aceita/recusada); notificação automática da resposta.
+- **Cotação para grandes volumes** — formulário com CNPJ para volumes fora do fluxo de carrinho, com notificação automática para o time comercial.
+
+#### Operação e gestão (convence o dono/gestor)
+
+- **Painel administrativo completo** com KPIs em tempo real: receita, pedidos, produtos, clientes — gráficos de 30 dias, top produtos, exportação em CSV.
+- **Gestão de estoque com sincronização automática** — idempotente, auditável, resiliente a falhas, nunca apaga produto por engano (arquiva).
+- **Integração nativa com AppSolar (Edeltec)** — sincronização de catálogo de kits (preço, ficha técnica, imagens) automática diária e de hora em hora.
+- **Importação de produtos via CSV** — 3 modos (criar, atualizar, criar+atualizar), 15 colunas, pré-visualização antes de confirmar, histórico completo.
+- **Ações em massa** — publicar/arquivar/destacar/excluir até 100 produtos de uma vez.
+- **Módulo financeiro** — DRE, fluxo de caixa, conciliação, exportação de relatórios.
+- **Gestão de devoluções/RMA** — fluxo completo com fotos e status.
+- **Central de suporte/tickets** — thread cliente-admin com categorias, prioridades e status.
+- **White-label total** — nome da loja e logo configuráveis pelo admin sem mexer em código.
+- **Configurações centralizadas sem deploy** — frete grátis, identidade visual e regras de negócio mudam pelo painel.
+
+#### Pagamentos e integrações
+
+- **Gateway de pagamento (PIX, Boleto, Cartão parcelado)** — hoje via Asaas, arquitetura plugável para troca de gateway.
+- **Webhooks idempotentes** — pagamento duplicado não gera pedido duplicado.
+- **Login social com Google** — merge automático de conta por e-mail.
+- **Busca full-text de alta performance (Meilisearch)**.
+- **Filas e processamento assíncrono (Laravel Horizon)** — e-mails e sincronizações não travam a navegação.
+
+#### Segurança e conformidade
+
+- **2FA (TOTP) obrigatório para administradores**, opcional para clientes.
+- **6 papéis e 26 permissões granulares** — cada colaborador só vê e faz o que deveria.
+- **Auditoria completa** de ações sensíveis (quem, quando, IP, antes/depois).
+- Proteções padrão: CSRF, XSS, SQL Injection (bindings), rate limiting, headers de segurança (HSTS, CSP, X-Frame-Options).
+- **Cartão de crédito nunca armazenado no servidor** — tokenização no gateway (conformidade PCI-DSS).
+- **Compatível com LGPD**: double opt-in, direitos do titular (acesso/exportação/exclusão/anonimização), banner de cookies.
+- Dados sensíveis criptografados em repouso; TLS obrigatório em produção.
+
+---
+
+### Diferenciais competitivos vs. plataformas genéricas
+
+| Recurso | E-commerce genérico | Solar Shop |
+|---|---|---|
+| Simulador de economia solar com dados ANEEL por estado | ❌ | ✅ nativo |
+| Geração de proposta comercial em PDF a partir do simulador | ❌ | ✅ nativo |
+| Kit Builder guiado (painel + inversor + estrutura + cabos) | ❌ | ✅ nativo |
+| Tabelas de preço por tipo de cliente (varejo/consultor/integrador/distribuidor) | Customização cara | ✅ nativo |
+| Portal B2B com aprovação de empresa por CNPJ | Customização cara | ✅ nativo |
+| Painel de consultor/vendedor externo com metas e comissão | ❌ | ✅ nativo |
+| Motor de propostas comerciais com aceite público | ❌ | ✅ nativo |
+| Sincronização nativa com AppSolar/Edeltec | ❌ | ✅ nativo |
+| Tempo até estar no ar | Meses (customizado) | Dias, com todos os recursos prontos |
+
+---
+
+### Sugestão de estrutura de planos
+
+| Plano | Público | Inclui |
+|---|---|---|
+| **Essencial** | Loja solar iniciante, venda direta ao consumidor | Catálogo, carrinho/checkout, pagamentos (PIX/Boleto/Cartão), simulador solar, blog, reviews, cupons, busca, frete |
+| **Profissional** | Integradores/revendedores que também vendem para outros integradores | Tudo do Essencial + Kit Builder + Tabelas de preço por segmento + Cotação por volume + Comparador + Fidelidade + Flash Sales |
+| **Business / B2B** | Distribuidoras com rede de parceiros e força de vendas | Tudo do Profissional + Portal B2B completo (CNPJ, aprovação, crédito) + Painel de Consultores + Motor de Propostas + Sincronização ERP/AppSolar + Relatórios financeiros |
+| **Enterprise** | Operações grandes, múltiplas marcas/franquias | Tudo do Business + White-label multi-loja + suporte dedicado + SLA + customizações |
+
+> Preços e nomes finais a definir conforme estratégia comercial.
+
+---
+
+### Mensagens-chave / Argumentos de conversão
+
+1. "A única plataforma de e-commerce feita para o setor solar — não uma loja genérica adaptada."
+2. "De simulador de economia a proposta em PDF: seu cliente compra sem sair do site."
+3. "Venda para o consumidor final, para integradores e para distribuidores — na mesma plataforma, com preços automáticos para cada um."
+4. "Sua equipe comercial com painel próprio: metas, comissão e propostas em um só lugar."
+5. "Estoque sempre atualizado — sincronização automática com seu ERP ou distribuidor, sem digitar produto por dia."
+6. "No ar em dias, não em meses." (contraste com desenvolvimento sob medida)
+
+---
+
+### FAQ (objeções prováveis)
+
+**"Preciso ter conhecimento técnico para usar?"**
+Não. O painel administrativo é visual, sem código — configurações de frete, preços e identidade visual mudam pelo painel.
+
+**"Consigo vender para consumidor final e para integradores ao mesmo tempo?"**
+Sim — é o diferencial central: tabelas de preço automáticas por tipo de cliente na mesma loja, sem duplicar catálogo.
+
+**"Meu catálogo já existe em um distribuidor. Preciso recadastrar tudo?"**
+Não. Há sincronização automática com AppSolar/Edeltec e importação via CSV/ERP genérico.
+
+**"É seguro? Atende LGPD?"**
+Sim — 2FA, criptografia, auditoria completa e fluxos de consentimento/exclusão de dados do titular integrados.
+
+**"Quanto tempo até a loja estar no ar?"**
+Dias, não meses — a plataforma já vem com e-commerce, simulador e portal B2B prontos; falta apenas configurar catálogo, pagamento e identidade visual.
+
+**"Posso ter minha própria equipe de vendedores/consultores?"**
+Sim, há painel dedicado de consultor com metas, comissão e motor de propostas comerciais.
+
+**"Dá para personalizar a marca (nome e logo)?"**
+Sim, totalmente white-label pelo próprio admin.
 
 ---
 
