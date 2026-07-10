@@ -39,22 +39,179 @@ Empresas com equipe de vendas ativa (call center outbound), times B2B que prospe
 
 **Slug:** `gd-solar-erp`
 **Categoria:** ERP · Geração Distribuída Solar
-**Tagline:** Da proposta à cobrança: gestão completa para quem opera energia solar por assinatura.
+**Tagline:** Da proposta ao Pix, sem planilha — o ERP feito para quem vende energia solar por assinatura.
 
-**Descrição:**
-ERP para empresas que atuam com geração compartilhada e assinatura de energia solar. Administra usinas, clientes e produtores em uma única plataforma. Cobre todo o ciclo: proposta → contrato → alocação de energia → importação de contas → faturamento → cobrança.
+> **Nota:** O nome interno do repositório é `casaverde`. Usar apenas "GD Solar ERP" em todo contexto público.
+>
+> **Atenção:** O repositório contém um briefing de landing page B2C de outra marca (venda de assinatura de energia para consumidor final). Esse material é de um site diferente e **não deve ser citado nem referenciado** no site da Rexar. O GD Solar ERP é o **software** que gerencia esse tipo de negócio — vendido para outras empresas (B2B SaaS), não para o consumidor final.
+
+**Resumo executivo:**
+GD Solar ERP é a plataforma completa para quem opera energia solar por compensação/assinatura no Brasil (Geração Distribuída Compartilhada, Lei 14.300/ANEEL): da prospecção do cliente à cobrança via Pix ou boleto, passando por importação automática de fatura, alertas de segurança sobre alocação de energia e relatórios de economia que viram argumento comercial. Com portais dedicados para consultor, cliente e produtor, dashboards executivos em tempo real e automações que rodam sozinhas todo dia — não é um CRM genérico adaptado, nasceu para o modelo real da GD Compartilhada.
+
+**Ciclo operacional coberto:**
+```
+Prospecção → Proposta comercial → Contrato → Vínculo cliente-usina →
+Importação de faturas (IMAP + upload) → Geração de cobranças →
+Pagamento (Pix/Boleto via Cora) → Relatórios de economia e financeiro
+```
 
 **Para quem é:**
-Empresas com modelo de assinatura/geração compartilhada, administradoras de usinas, consultores de energia solar.
+- Comercializadoras/consórcios de energia por compensação que ainda operam em planilhas e WhatsApp manual
+- Gestoras de usinas GD que precisam alocar energia entre vários clientes com segurança
+- Escritórios/consultorias de energia solar que intermediam produtores e consumidores
+- Integradoras solares que querem adicionar receita recorrente via GD compartilhada
 
-**Funcionalidades:**
-- Painéis separados por perfil (admin, consultor, cliente, produtor)
-- Importação automática de contas de luz por e-mail (IMAP)
-- Faturamento automático
-- Cobrança integrada (boleto e Pix) via Cora
-- Lembretes de cobrança via WhatsApp
-- Gestão de usinas e cotas de energia
-- Relatórios financeiros e operacionais
+---
+
+### Dores do mercado que o produto resolve
+
+| Dor do operador GD | O que o GD Solar ERP faz | Benefício |
+|---|---|---|
+| Leitura manual de fatura, erro de digitação | Importação automática via IMAP (e-mail) + upload, com extração de PDFs protegidos por senha | Zero retrabalho manual, elimina erro humano |
+| Risco de vender mais energia do que a usina gera | Alerta automático `allocated_energy_exceeds_available` (crítico) — cruza energia alocada × disponível todo mês | Protege contra risco jurídico e financeiro real |
+| Cobrança manual por boleto avulso, recebimento lento | Geração automática de cobrança + Pix e Boleto simultâneos (QR Code, copia-e-cola, PDF) via Cora | Reduz inadimplência, acelera recebimento |
+| Esquece de cobrar cliente inadimplente | Lembrete automático: 3 dias antes do vencimento e a cada 5 dias em atraso, com link WhatsApp pronto | Menos inadimplência sem time de cobrança dedicado |
+| Não sabe quanto cada cliente está economizando | Relatório de economia por cliente e carteira: valor original vs. final, % de economia, evolução mês a mês | Vira munição comercial para fidelização e upsell |
+| Cada consultor tem planilha própria de clientes | Scoping automático por consultor — cada vendedor só vê sua carteira, sem filtro manual | Escala o time sem vazamento de carteira |
+| Sem visão executiva do negócio | Cockpit executivo: kWh disponível/alocado/restante da frota inteira, usinas críticas, ranking de consultores | Visão de helicóptero em uma tela só |
+| Cliente liga perguntando status de fatura/pagamento | Portal do cliente com faturas, cobranças, contrato, histórico de desconto e relatório de economia — self-service | Reduz volume de suporte |
+| Produtor (dono de usina) sem visibilidade de geração/recebimento | Portal do produtor com geração, alocação e contratos | Fortalece relação com fornecedores de energia |
+| Onboarding de novo produtor bagunçado | Kanban de 7 etapas (drag-and-drop): análise de documentos → assinatura → ficha de inscrição → contratos → troca de titularidade → concluído | Padroniza processo, nada se perde entre etapas |
+| Sem auditoria de decisões | Cada cobrança/ajuste/alerta guarda `created_by`/`resolved_by` com trilha completa | Segurança jurídica e operacional |
+| Financeiro não sabe se webhook de pagamento falhou | Dashboard admin mostra pagamentos e webhooks com falha em tempo real | Detecta problema de reconciliação antes virar prejuízo |
+
+---
+
+### Módulos do sistema
+
+#### 3.1 Dashboards por papel
+
+- **Cockpit Executivo** (dono/diretoria): saldo de energia da frota inteira (disponível/alocada/restante), usinas em saldo crítico (≤0 kWh) ou baixo (≤10%), clientes sem usina vinculada, funil de revisão de faturas, alertas críticos abertos, ranking dos top 10 consultores, crescimento mês a mês, feed de "próximas ações" com link direto para resolver.
+- **Dashboard Admin**: contadores de clientes, propostas, faturas pendentes de revisão, cobranças em aberto/atrasadas, valor a receber, receita mensal, pagamentos e webhooks com falha.
+- **Dashboard Consultor**: carteira pessoal — clientes/produtores ativos e novos no mês, propostas em aberto, leads, atalhos para nova proposta/cliente/produtor.
+- **Dashboard Cliente**: faturas aprovadas, consumo do mês, cobranças pendentes/atrasadas, total pago no ano, quanto já economizou no total (histórico completo), gráfico de 12 meses de kWh × R$.
+
+#### 3.2 Alocação de energia com trava de segurança (diferencial central)
+
+A usina mantém `energia_disponivel_kwh`, `energia_alocada_kwh` e `energia_saldo_kwh` como campos de primeira classe. Uma usina pode ser fracionada entre vários clientes, cada um com sua cota, percentual de desconto e percentual de consumo — o modelo real da Lei 14.300.
+
+Todo mês, a plataforma varre automaticamente cada usina e dispara alertas tipados que **se auto-resolvem** quando a condição desaparece:
+
+- `missing_generation_record` — usina sem leitura de geração no mês
+- `zero_available_energy` — usina zerada
+- `allocated_energy_exceeds_available` **(crítico)** — vendeu mais do que a usina gera
+- `low_energy_balance` — saldo ≤10%
+- `consumption_exceeds_allocated` — cliente consumiu mais do que sua cota
+- `pending_bill_review`, `overdue_charges`, `active_client_without_bill`
+
+#### 3.3 Faturamento e pagamento
+
+- Fatura de concessionária aprovada → gera cobrança automaticamente, sem digitação manual.
+- Cobrança gera **boleto E Pix ao mesmo tempo** (QR Code, copia-e-cola, linha digitável, URL de checkout, PDF) via Cora.
+- Arquitetura de pagamento **agnóstica de provedor** — Cora hoje, pronta para novos provedores amanhã.
+- Lembrete automático pré-vencimento (3 dias antes) e pós-vencimento (a cada 5 dias) via job assíncrono, com link WhatsApp pré-preenchido.
+- Reconciliação de pagamento via webhook assíncrono, com painel de falhas visível ao admin.
+
+#### 3.4 Propostas comerciais e contratos
+
+- Duas trilhas: para **cliente** (consumidor de energia) e para **produtor** (dono de usina).
+- Cadastro inline de cliente/produtor durante a própria proposta — sem sair da tela, sem duplicidade de CPF/CNPJ.
+- Desconto padrão configurável aplicado automaticamente.
+- Ciclo de status da proposta (emitida → enviada → em análise → pendente…).
+- Geração de PDF de proposta e contrato (locação de usina) prontos para assinatura.
+- Simulação de ROI de investimento para propostas de produtor.
+
+#### 3.5 Relatórios
+
+- **Relatório de economia**: quanto cada cliente economizou, em R$ e %, evolução mensal, ranking por economia.
+- **Relatório financeiro**: valores brutos, com desconto de contrato, ajustes manuais, evolução de 12 meses.
+- **Relatório executivo**: visão consolidada de toda a operação (clientes, propostas, contratos, faturas, cobranças, usinas).
+- **Relatório por usina**: desempenho financeiro casado com potência instalada e média de geração.
+- Todos exportáveis em **PDF e Excel** — inclusive o relatório de economia que o cliente final acessa no próprio portal.
+
+#### 3.6 Portais dedicados por papel
+
+- **Portal do Cliente**: faturas, cobranças, contrato, histórico de desconto, vínculo com usina, relatório de economia (PDF/Excel), chamados de suporte — self-service.
+- **Portal do Produtor**: usinas próprias, geração, propostas, pipeline Kanban do onboarding.
+- **Portal do Consultor**: carteira própria com scoping automático (nunca vê cliente de outro consultor).
+
+#### 3.7 Suporte integrado
+
+Sistema de chamados com categoria, prioridade, SLA de primeira resposta, notas internas invisíveis ao cliente e máquina de estados (Novo → Em Atendimento → Aguardando Cliente → Resolvido → Fechado) com transições automáticas (ex.: cliente responde → volta para "Em Atendimento" sozinho).
+
+---
+
+### Diferenciais competitivos
+
+1. **Único com trava anti-oversell de energia** — modela `energia_alocada_kwh` vs `energia_disponivel_kwh` com alerta automático. Risco financeiro real que o produto elimina.
+2. **Feito especificamente para GD Compartilhada (Lei 14.300)** — não é ERP genérico adaptado; o modelo de dados nasceu para usina, unidade consumidora, concessionária e vínculo cliente-usina.
+3. **Pagamento nativo Pix + Boleto** sem sistema externo — cobrança sai da plataforma já pronta para pagar.
+4. **Automação de cobrança e lembrete de ponta a ponta** — de fatura aprovada até lembrete de atraso, zero toque manual.
+5. **4 portais em 1 produto** (Admin, Consultor, Produtor, Cliente) — cliente final e produtor também usam a plataforma, não só a equipe interna.
+6. **Prova real de uso em produção** — já roda a operação de uma comercializadora de energia solar por compensação, não é MVP sem tração.
+7. **Stack moderna e testada**: Laravel 12 + React 18, 96 migrations, 62 arquivos de teste automatizado (Pest), autorização via Policies por papel.
+8. **Importação automática de fatura por e-mail (IMAP)**, incluindo PDFs protegidos por senha — detalhe técnico raro que resolve dor muito comum (concessionárias enviam PDF travado).
+
+---
+
+### Sinais de robustez técnica (para seção de credibilidade)
+
+- **96 migrations, 40+ tabelas, 56 models** → sistema maduro, não gambiarra.
+- **62 arquivos de teste automatizado** rodando em cada mudança → mudanças não quebram o que já funciona.
+- **Autorização por Policy em cada módulo crítico** com bypass só para Admin → dado do negócio só é visto por quem deveria ver.
+- **9 comandos automatizados agendados** (reimportação de fatura, lembrete de cobrança, marcação de atraso, sincronização de pagamento, varredura de alertas) → o sistema trabalha sozinho todo dia, mesmo sem ninguém logado.
+- **6 filas assíncronas** para processar webhook, pagamento, lembrete, cobrança → não trava a tela do usuário.
+- **Arquitetura de pagamento plugável** (não hard-coded no Cora) → não fica refém de um único provedor.
+
+---
+
+### Sugestão de estrutura de planos
+
+| Plano | Indicado para | Módulos |
+|---|---|---|
+| **Start** | Comercializadora pequena | Propostas, contratos, cobrança, portal do cliente |
+| **Growth** | Operação em expansão, múltiplos consultores | + Alertas operacionais, relatórios de economia, portal do produtor |
+| **Enterprise** | Múltiplas usinas, operação madura | + Cockpit executivo, integrações customizadas, suporte prioritário |
+
+> Não publicar preço fixo na primeira versão — usar CTA "Fale com o time" / "Agende uma demonstração", padrão para ERP B2B com venda consultiva.
+
+---
+
+### Mensagens-chave / Argumentos de conversão
+
+1. "O ERP que sabe quanto de energia sua usina ainda pode vender."
+2. "Da fatura da concessionária ao Pix do cliente, sem planilha no meio."
+3. "Feito para quem vende energia solar por assinatura — não adaptado, nascido para isso."
+4. "9 automações rodam sozinhas todo dia — sua equipe só acompanha o dashboard."
+5. "4 portais em 1 produto: seu time, seus clientes e seus produtores, cada um com o que precisa ver."
+
+---
+
+### FAQ (decisor B2B)
+
+**"Preciso trocar todo meu sistema de uma vez?"**
+Não — o onboarding migra dados de clientes, usinas e contratos existentes.
+
+**"O sistema calcula automaticamente o desconto de cada cliente?"**
+Sim, com base em regra de desconto configurável por cliente ou padrão do sistema.
+
+**"Meus consultores vão ver a carteira uns dos outros?"**
+Não — cada consultor só vê e gerencia sua própria carteira (scoping automático).
+
+**"O sistema me avisa se eu vender mais energia do que minha usina gera?"**
+Sim — alerta crítico automático, mensal, por usina. É o principal diferencial do produto.
+
+**"Como funciona a cobrança dos meus clientes?"**
+Boleto e Pix gerados automaticamente a partir da fatura aprovada, com lembrete automático de vencimento e atraso.
+
+**"Meu cliente final vai poder acessar o sistema?"**
+Sim, com portal próprio para ver fatura, cobrança, contrato e quanto já economizou.
+
+**"E os produtores (donos de usina)?**
+Também têm portal próprio, com visão de geração e contratos.
+
+**"Preciso de equipe técnica para operar?"**
+Não — as automações (importação de fatura, geração de cobrança, lembretes) rodam sozinhas; sua equipe só acompanha os alertas e o dashboard.
 
 ---
 
