@@ -3,9 +3,16 @@ import AppLayout from '../Components/Layout/AppLayout';
 import Badge from '../Components/UI/Badge';
 import { produtos } from '../data/produtos';
 
+/* Permite links como /contato?produto=gd-solar-erp já chegarem com o sistema selecionado. */
+function produtoInicial() {
+    if (typeof window === 'undefined') return '';
+    const slug = new URLSearchParams(window.location.search).get('produto');
+    return produtos.some((p) => p.slug === slug) ? slug : '';
+}
+
 export default function Contato() {
     const [form, setForm] = useState({
-        nome: '', empresa: '', email: '', telefone: '', produto: '', mensagem: '',
+        nome: '', empresa: '', email: '', telefone: '', produto: produtoInicial(), mensagem: '',
     });
     const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
 
