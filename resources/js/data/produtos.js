@@ -73,10 +73,10 @@ export const produtos = [
     {
         slug: 'gd-solar-erp',
         nome: 'GD Solar ERP',
-        categoria: 'ERP · Energia Solar por Assinatura',
-        tagline: 'A energia é solar. A gestão, automática. O sistema que organiza sua empresa de energia por assinatura, da venda ao recebimento.',
+        categoria: 'ERP · Geração Distribuída (GD)',
+        tagline: 'Sistema de gestão completa para Geração Distribuída (GD): faturas da concessionária lidas automaticamente, usinas, clientes, cobrança e pagamento em uma só plataforma.',
         descricao:
-            'O GD Solar ERP organiza toda a empresa de energia solar por assinatura em um só lugar: a venda, os clientes, as usinas, as contas de luz, a cobrança e o recebimento. O trabalho repetitivo — ler conta, calcular desconto, emitir boleto, conferir pagamento — passa a ser feito pelo sistema. Sua equipe fica livre para vender e atender.',
+            'O GD Solar ERP é o sistema de gestão completa para empresas de Geração Distribuída (GD) de energia solar: cooperativas, consórcios, comercializadoras e gestoras de usinas que operam energia por assinatura ou geração compartilhada. Em uma só plataforma, organiza a venda, as usinas e a energia de cada uma, os clientes e suas unidades consumidoras, as contas de luz, a cobrança com desconto e o recebimento. O trabalho repetitivo passa a ser feito pelo sistema, e sua equipe fica livre para vender e atender.',
         cor: 'green',
         icone: 'Zap',
         // temas, dores e resultados são pareados por índice: uma linha "antes → depois" por tema
@@ -88,14 +88,14 @@ export const produtos = [
             'Controle das usinas',
         ],
         dores: [
-            'Baixadas do e-mail e digitadas à mão, uma por uma.',
+            'Baixadas do e-mail, subidas e digitadas à mão, uma por uma.',
             'Desconto calculado em planilha, sujeito a erro.',
             'Boletos emitidos um a um e pagamentos conferidos no extrato.',
             'Cliente liga para pedir boleto e perguntar quanto economizou.',
             'Falta de energia descoberta quando o cliente reclama.',
         ],
         resultados: [
-            'Importadas e lidas automaticamente.',
+            'Entram e são lidas sozinhas todo mês. Ninguém sobe arquivo.',
             'Valor calculado pelo sistema com o desconto de cada contrato.',
             'Boleto e Pix em um clique, com baixa automática.',
             'Cliente paga e acompanha a economia pelo portal.',
@@ -103,12 +103,12 @@ export const produtos = [
         ],
         comoFunciona: [
             { titulo: 'Sua equipe vende', descricao: 'O consultor cadastra o cliente, gera a proposta em PDF e envia pelo WhatsApp em poucos minutos.' },
-            { titulo: 'A conta de luz chega', descricao: 'Todo mês, a fatura da concessionária cai no e-mail e o sistema lê os valores sozinho. Sua equipe só confere e aprova.' },
+            { titulo: 'As faturas entram sozinhas', descricao: 'Todo mês, as faturas da concessionária entram automaticamente pela integração com o e-mail e o sistema lê os valores. Sua equipe só confere e aprova.' },
             { titulo: 'A cobrança sai pronta', descricao: 'O sistema calcula o valor com o desconto do contrato e emite boleto ou Pix. O cliente recebe por e-mail e no portal.' },
             { titulo: 'O dinheiro entra', descricao: 'O cliente paga pelo celular, a cobrança é baixada sozinha e você acompanha o caixa em tempo real.' },
         ],
         diferenciais: [
-            'Feito para energia por assinatura. Não é um sistema genérico adaptado: ele já entende usina, conta de luz, desconto e concessionária.',
+            'Feito para Geração Distribuída. Não é um sistema genérico adaptado: ele já entende usina, unidade consumidora, créditos de energia, desconto e concessionária.',
             'Tudo conversa: o que o consultor cadastra na venda acompanha o cliente até o relatório de economia.',
             'Cada pessoa tem o próprio acesso — você, seus consultores, seus clientes e os donos das usinas.',
             'Sua marca em tudo: no portal do cliente e até no boleto.',
@@ -116,7 +116,7 @@ export const produtos = [
         ],
         // Ganhos do empresário — o que muda no negócio
         beneficios: [
-            { titulo: 'Sua equipe para de digitar', descricao: 'Ler conta de luz, calcular desconto, emitir boleto e conferir pagamento: o sistema faz. A equipe fica com o que dá resultado — vender e atender.' },
+            { titulo: 'Sua equipe para de digitar', descricao: 'Baixar e subir fatura, digitar valores, calcular desconto, emitir boleto e conferir pagamento: o sistema faz. A equipe fica com o que dá resultado — vender e atender.' },
             { titulo: 'Mais clientes com a mesma equipe', descricao: 'Quando o trabalho repetitivo some, cada pessoa da equipe dá conta de muito mais clientes. Você cresce sem contratar na mesma proporção.' },
             { titulo: 'Dinheiro no caixa, sem conferir extrato', descricao: 'Pagamentos integrados ao banco: boleto e Pix saem em um clique, o cliente recebe lembrete antes do vencimento e cada pagamento é reconhecido automaticamente.' },
             { titulo: 'Fim da cobrança errada', descricao: 'O desconto de cada contrato é aplicado automaticamente. Menos erro de digitação, menos retrabalho, menos cliente insatisfeito.' },
@@ -125,12 +125,12 @@ export const produtos = [
         ],
         // O que vem incluso — funcionalidades, em linguagem simples
         modulos: [
-            { titulo: 'Leitura automática das contas de luz', descricao: 'Busca as faturas no seu e-mail e lê os valores, mesmo em PDF com senha.', nota: 'Automática para faturas da Copel; demais concessionárias por envio do PDF.' },
+            { titulo: 'Entrada automática das faturas', descricao: 'Integração com o e-mail que recebe as contas de luz: as faturas entram e são lidas sozinhas, mesmo em PDF com senha.' },
             { titulo: 'Cobrança com desconto automático', descricao: 'Calcula o valor de cada cliente a partir da conta de luz e do contrato.' },
             { titulo: 'Pagamentos integrados', descricao: 'Boleto e Pix conectados a bancos e plataformas de pagamento, com a sua marca e baixa automática.' },
             { titulo: 'Propostas em PDF', descricao: 'Prontas em minutos para o consultor enviar ao cliente.' },
             { titulo: 'Contratos e clientes', descricao: 'Cadastro completo, contratos registrados e histórico de tudo.' },
-            { titulo: 'Controle das usinas', descricao: 'Quanta energia cada usina tem, quanto já foi vendido e quanto sobra.' },
+            { titulo: 'Gestão das usinas de GD', descricao: 'Geração, energia disponível, quanto já foi destinado a clientes e quanto sobra em cada usina.' },
             { titulo: 'WhatsApp em um clique', descricao: 'Mensagens prontas de boas-vindas, boleto, lembrete e pagamento confirmado.' },
             { titulo: 'Lembretes de vencimento', descricao: 'O cliente recebe e-mail antes de vencer; o consultor é avisado dos atrasos.' },
             { titulo: 'Relatórios', descricao: 'Financeiro, clientes, faturas, pagamentos e usinas, para exportar.' },
@@ -164,6 +164,7 @@ export const produtos = [
                     'Relatórios financeiro, de clientes e de usinas',
                 ],
                 ganho: 'Visão da empresa inteira sem pedir relatório para ninguém.',
+                imagem: { src: '/images/produtos/gd-solar-erp/telas/cockpit-executivo.webp', alt: 'Cockpit executivo com indicadores financeiros, de energia e de operação' },
             },
             {
                 perfil: 'Seus consultores',
@@ -175,6 +176,7 @@ export const produtos = [
                     'Aviso de quem precisa de contato, com a mensagem de WhatsApp pronta',
                 ],
                 ganho: 'Cada consultor vê só a própria carteira — e sabe na hora com quem falar.',
+                imagem: { src: '/images/produtos/gd-solar-erp/telas/painel-consultor.webp', alt: 'Painel do consultor com resumo da carteira e ações rápidas' },
             },
             {
                 perfil: 'Seus clientes',
@@ -186,6 +188,8 @@ export const produtos = [
                     'E-mail quando a cobrança sai e lembrete antes de vencer',
                 ],
                 ganho: 'Atendimento profissional, com a sua marca, sem precisar ligar.',
+                imagem: { src: '/images/produtos/gd-solar-erp/telas/painel-cliente.webp', alt: 'Portal do cliente com cobranças, total economizado e histórico de consumo' },
+                celular: { src: '/images/produtos/gd-solar-erp/telas/celular-painel.webp', alt: 'Portal do cliente no celular' },
             },
             {
                 perfil: 'Donos das usinas',
@@ -196,13 +200,9 @@ export const produtos = [
                     'A sua empresa cuida do relacionamento com os clientes',
                 ],
                 ganho: 'Uma relação organizada com quem fornece a energia que você vende.',
+                imagem: { src: '/images/produtos/gd-solar-erp/telas/detalhe-usina-produtor.webp', alt: 'Painel do produtor com capacidade utilizada e dados técnicos da usina' },
             },
         ],
-        exemploCobranca: {
-            competencia: '08/2026',
-            energiaCompensada: 480,
-            descontoPercentual: 15,
-        },
         seguranca: [
             'Cada pessoa vê só o que é dela: consultor vê a própria carteira, cliente vê as próprias contas.',
             'Senhas e dados de pagamento guardados com criptografia.',
@@ -211,9 +211,11 @@ export const produtos = [
         ],
         faq: [
             { pergunta: 'Quanto custa?', resposta: 'O valor depende do tamanho da sua operação — quantidade de clientes, usinas e pessoas na equipe. Na demonstração entendemos o seu cenário e enviamos uma proposta sob medida, sem compromisso.' },
+            { pergunta: 'O que é Geração Distribuída (GD) e para quem é o sistema?', resposta: 'Geração Distribuída é a energia gerada perto de onde é consumida, como usinas solares que compensam a conta de luz de clientes por meio de créditos de energia (Lei 14.300). O GD Solar ERP é feito para as empresas que operam esse modelo: cooperativas, consórcios, comercializadoras de energia por assinatura e gestoras de usinas.' },
+            { pergunta: 'Qual a diferença para um ERP ou CRM comum?', resposta: 'Sistemas genéricos não sabem o que é usina, unidade consumidora, crédito de energia ou fatura da concessionária. No GD Solar ERP isso é a base: cada cliente é ligado à usina que fornece sua energia, e a cobrança sai da conta de luz com o desconto do contrato.' },
             { pergunta: 'Preciso instalar alguma coisa?', resposta: 'Não. O GD Solar ERP funciona no navegador do computador e do celular. Cada pessoa entra com o próprio login.' },
             { pergunta: 'Minha equipe vai conseguir usar?', resposta: 'Sim. O sistema foi feito para quem vende e atende, não para técnicos. Cada pessoa vê só as telas do seu trabalho, e boa parte das tarefas acontece sozinha.' },
-            { pergunta: 'Como as contas de luz entram no sistema?', resposta: 'Pelo e-mail que já recebe as faturas: o sistema busca as mensagens novas e lê os PDFs sozinho, inclusive os protegidos por senha. Hoje a leitura automática atende faturas da Copel; nas demais concessionárias, basta enviar o PDF.' },
+            { pergunta: 'Preciso subir as faturas da concessionária todo mês?', resposta: 'Não. A plataforma se integra ao e-mail que recebe as faturas das concessionárias: busca as novas a cada hora, abre os PDFs (inclusive os protegidos por senha) e lê consumo, energia injetada, valores e vencimento. Ninguém precisa baixar, subir ou digitar fatura; sua equipe só confere e aprova. As concessionárias da sua operação são confirmadas na demonstração.' },
             { pergunta: 'Como meus clientes pagam?', resposta: 'Por boleto ou Pix, emitidos pela própria plataforma. O cliente recebe a cobrança por e-mail e também pode pagar pelo portal. Quando ele paga, a confirmação chega automaticamente e a cobrança é baixada sozinha.' },
             { pergunta: 'Funciona com o meu banco?', resposta: 'A plataforma trabalha com diferentes meios de pagamento integrados, com emissão e baixa automáticas. Na demonstração, verificamos a melhor integração para o banco ou a plataforma de pagamento que sua empresa já usa.' },
             { pergunta: 'Um consultor vê os clientes do outro?', resposta: 'Não. Cada consultor vê apenas a própria carteira. Só a gestão tem a visão completa.' },
@@ -222,8 +224,41 @@ export const produtos = [
             { pergunta: 'Tem aplicativo para celular?', resposta: 'Não é preciso baixar aplicativo: o sistema funciona pelo navegador do celular, inclusive o portal do cliente e o pagamento por Pix.' },
         ],
         paraQuem:
-            'Empresas de energia solar por assinatura ou compensação — comercializadoras, cooperativas, consórcios e gestoras de usinas — que já sentem que planilha, e-mail e WhatsApp não dão mais conta do crescimento.',
-        segmentos: ['Comercializadoras de energia', 'Cooperativas', 'Consórcios', 'Gestoras de usinas'],
+            'Empresas de Geração Distribuída (GD) de energia solar — cooperativas, consórcios de geração compartilhada, comercializadoras de energia por assinatura e gestoras de usinas — que já sentem que planilha, e-mail e WhatsApp não dão mais conta do crescimento.',
+        // Telas reais da plataforma (public/images/produtos/gd-solar-erp/telas/, dados fictícios)
+        telas: {
+            hero: { src: '/images/produtos/gd-solar-erp/telas/gestao-de-energia.webp', alt: 'Gestão de energia: usinas com energia disponível, alocada e saldo em kWh' },
+            heroCelular: { src: '/images/produtos/gd-solar-erp/telas/celular-pagar-cobranca.webp', alt: 'Cobrança no celular do cliente' },
+            importacao: { src: '/images/produtos/gd-solar-erp/telas/historico-de-importacao.webp', alt: 'Histórico da importação automática de faturas de concessionárias' },
+            faturaLida: { src: '/images/produtos/gd-solar-erp/telas/fatura-em-revisao.webp', alt: 'Fatura da concessionária com campos extraídos automaticamente do PDF' },
+        },
+        // Seção "Veja por dentro": uma aba por funcionalidade
+        galeria: [
+            { aba: 'Alocação de energia', titulo: 'Cada cliente ligado à usina que fornece sua energia', descricao: 'Vínculos entre unidades consumidoras e usinas, com kWh destinados, desconto e período de cada contrato.', imagem: '/images/produtos/gd-solar-erp/telas/vinculos-cliente-usina.webp', alt: 'Alocações de energia entre clientes e usinas' },
+            { aba: 'Geração das usinas', titulo: 'Geração mensal de cada usina, sempre atualizada', descricao: 'Energia gerada, injetada, compensada e disponível por usina, mês a mês.', imagem: '/images/produtos/gd-solar-erp/telas/geracao-das-usinas.webp', alt: 'Geração mensal das usinas em kWh' },
+            { aba: 'Cobrança', titulo: 'Cobrança pronta, com o desconto do contrato', descricao: 'Boleto e Pix, envio ao cliente e lembrete pelo WhatsApp em um clique, com o resumo financeiro completo.', imagem: '/images/produtos/gd-solar-erp/telas/detalhe-da-cobranca.webp', alt: 'Detalhe da cobrança com ações de boleto, Pix e WhatsApp' },
+            { aba: 'Alertas', titulo: 'Problemas apontados antes de chegarem ao cliente', descricao: 'Usinas, faturas, energia e financeiro verificados o tempo todo, com severidade e ação para resolver.', imagem: '/images/produtos/gd-solar-erp/telas/alertas-operacionais.webp', alt: 'Painel de alertas operacionais por severidade' },
+            { aba: 'Relatórios', titulo: 'Os números da operação em tempo real', descricao: 'Cobrado, recebido, em atraso, descontos e taxa de recebimento, com exportação em PDF e Excel.', imagem: '/images/produtos/gd-solar-erp/telas/relatorio-financeiro.webp', alt: 'Relatório financeiro com indicadores de cobrança e recebimento' },
+            { aba: 'Propostas', titulo: 'Proposta comercial pronta para enviar', descricao: 'Consumo, desconto, prazo e valor estimado calculados, com envio direto pelo WhatsApp.', imagem: '/images/produtos/gd-solar-erp/telas/proposta-detalhe.webp', alt: 'Proposta comercial com botão de envio pelo WhatsApp' },
+            { aba: 'Atendimento', titulo: 'Suporte organizado, com todo o histórico', descricao: 'Chamados com prioridade, conversa com o cliente e notas internas da equipe.', imagem: '/images/produtos/gd-solar-erp/telas/detalhe-do-chamado.webp', alt: 'Chamado de suporte com conversa entre cliente e equipe' },
+            { aba: 'Sua marca', titulo: 'A plataforma com a cara da sua empresa', descricao: 'Nome, cores, logotipo e favicon configurados pelo próprio painel, sem programação.', imagem: '/images/produtos/gd-solar-erp/telas/identidade-visual.webp', alt: 'Configuração de identidade visual: nome, cores e logotipo' },
+            { aba: 'No celular', titulo: 'O portal do cliente cabe no bolso', descricao: 'Fatura, cobrança e pagamento pelo celular, com a sua marca. Sem aplicativo para baixar.', celulares: [
+                { src: '/images/produtos/gd-solar-erp/telas/celular-fatura.webp', alt: 'Detalhe da fatura no celular' },
+                { src: '/images/produtos/gd-solar-erp/telas/celular-pagar-cobranca.webp', alt: 'Cobrança aguardando pagamento no celular' },
+                { src: '/images/produtos/gd-solar-erp/telas/celular-painel.webp', alt: 'Painel do cliente no celular' },
+            ] },
+        ],
+        // Destaque da página: entrada e leitura automática das faturas da concessionária
+        faturasAutomaticas: {
+            etapas: [
+                { titulo: 'A fatura chega no e-mail', descricao: 'A concessionária envia a conta de luz para o e-mail da sua empresa, como já acontece hoje.' },
+                { titulo: 'O sistema importa sozinho', descricao: 'A plataforma confere a caixa de e-mail a cada hora e traz cada fatura nova, inclusive PDF com senha.' },
+                { titulo: 'Os dados são lidos', descricao: 'Consumo, energia injetada, valores e vencimento são extraídos e ligados à unidade consumidora certa.' },
+                { titulo: 'Sua equipe aprova', descricao: 'Com a fatura aprovada, a cobrança do cliente é gerada com o desconto do contrato.' },
+            ],
+            destaques: ['Sem baixar fatura', 'Sem subir arquivo', 'Sem digitar valores', 'Todo mês, sozinho'],
+        },
+        segmentos: ['Cooperativas de GD', 'Consórcios de geração compartilhada', 'Comercializadoras de energia por assinatura', 'Gestoras de usinas de GD'],
         contratacao: [
             { titulo: 'Converse com a gente', descricao: 'Numa demonstração, mostramos o sistema funcionando com o desenho da sua empresa: usinas, clientes e equipe.' },
             { titulo: 'Deixamos tudo pronto', descricao: 'Configuramos sua marca, o e-mail que recebe as contas de luz, a integração com o seu meio de pagamento e o acesso de cada pessoa.' },

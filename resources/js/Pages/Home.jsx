@@ -82,7 +82,7 @@ const etapas = [
     { num: '01', label: 'Prospecção', produto: 'LeveLead CRM', slug: 'levelead-crm', cor: 'text-blue-600' },
     { num: '02', label: 'Orçamento', produto: 'CRM Solar', slug: 'crm-solar', cor: 'text-yellow-600' },
     { num: '03', label: 'Venda online', produto: 'Solar Shop', slug: 'solar-shop', cor: 'text-orange-600' },
-    { num: '04', label: 'Gestão recorrente', produto: 'GD Solar ERP', slug: 'gd-solar-erp', cor: 'text-green-600' },
+    { num: '04', label: 'Geração Distribuída', produto: 'GD Solar ERP', slug: 'gd-solar-erp', cor: 'text-green-600' },
 ];
 
 const confianca = [
@@ -95,7 +95,7 @@ const desafios = {
     'levelead-crm': 'Leads se perdem entre WhatsApp, planilha e e-mail, sem histórico único do atendimento.',
     'crm-solar': 'Cada vendedor dimensiona o sistema solar do seu jeito, sem padrão nem revisão.',
     'solar-shop': 'Vender só por WhatsApp e telefone significa perder cliente fora do horário comercial.',
-    'gd-solar-erp': 'Leitura manual de fatura e cobrança na mão tomam horas da equipe toda semana.',
+    'gd-solar-erp': 'Na Geração Distribuída, leitura manual de fatura e cobrança na mão tomam horas da equipe todo mês.',
 };
 
 export default function Home() {
