@@ -215,7 +215,7 @@ Sim. Há importação em massa via CSV/Excel para leads e produtos, com históri
 
 **Slug:** `gd-solar-erp`
 **Categoria:** ERP · Energia Solar por Assinatura
-**Tagline:** Da fatura ao Pix, sem planilha no meio. Sua empresa de energia por assinatura cresce sem crescer a equipe.
+**Tagline:** A energia é solar. A gestão, automática. O sistema que organiza sua empresa de energia por assinatura, da venda ao recebimento.
 
 > **Nota:** O nome interno do repositório é `casaverde`. Usar apenas "GD Solar ERP" em todo contexto público.
 
@@ -224,6 +224,8 @@ Sim. Há importação em massa via CSV/Excel para leads e produtos, com históri
 > **Fonte:** `docs/apresentacao-comercial.html` do repositório `casaverde` (outubro/2026), preparado a partir do sistema em funcionamento. Ela substitui o antigo `GD_SOLAR_ERP_RELATORIO_VENDAS.md` onde houver conflito — em especial, os meios de pagamento.
 
 > **Pagamentos:** a plataforma tem arquitetura de pagamento plugável e suporta diversos meios de pagamento integrados (hoje em operação com Mercado Pago). **No site, não citar provedor específico** — falar em boleto e Pix integrados a bancos e plataformas de pagamento, com emissão e baixa automáticas.
+
+> **Página de vendas:** estrutura, estratégia de conversão, campos de dados e regras de texto em `docs/gd-solar-erp-pagina-de-vendas.md`.
 
 ### Público e tom
 

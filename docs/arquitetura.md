@@ -64,12 +64,19 @@ AppLayout (wrapper de todas as páginas)
 
 Componentes UI reutilizáveis:
   ├── Button (variantes: primary, secondary, outline, ghost, dark)
-  └── Badge (cores: blue, green, orange, yellow, brand, dark)
+  ├── Badge (cores: blue, green, orange, yellow, brand, dark)
+  └── FaqItem (pergunta/resposta em accordion)
+
+Componentes de produto (Components/Produto/):
+  ├── OutrosProdutos (seção "Conheça também", venda cruzada)
+  └── GdSolarErpLanding (página de vendas dedicada do GD Solar ERP)
 ```
 
 ### Personalização por produto em `Pages/Produto.jsx`
 
-As 4 páginas de produto usam o mesmo componente, mas não o mesmo layout: um objeto `PRODUTO_STYLE` (por slug) escolhe, para cada produto, qual variante de comparação "Antes/Depois" (`linha` | `timeline`) e qual variante de "Funcionalidades" (`grid` | `tiles` | `chips` | `checklist`) renderizar, além de decidir se o hero mostra estatísticas, tags ou nada. Isso evita que as páginas pareçam o mesmo template recolorido. Seções como `personas` e `planos` só aparecem quando o produto tem esses campos em `data/produtos.js`. Detalhes de cada variante em `docs/design-system.md`.
+`Pages/Produto.jsx` é a única página da rota `/produtos/{slug}`. Primeiro ela consulta o objeto `LANDINGS`: se o slug tiver uma página de vendas própria, delega o render para ela, passando o `produto`. Hoje isso só acontece com o GD Solar ERP → `Components/Produto/GdSolarErpLanding.jsx`; ver `docs/gd-solar-erp-pagina-de-vendas.md`. Para criar outra página dedicada, crie o componente em `Components/Produto/` e registre o slug em `LANDINGS`. Rota e controller não mudam.
+
+Os demais produtos usam o mesmo template, mas não o mesmo layout: um objeto `PRODUTO_STYLE` (por slug) escolhe, para cada produto, qual variante de comparação "Antes/Depois" (`linha` | `timeline`) e qual variante de "Funcionalidades" (`grid` | `tiles` | `chips` | `checklist`) renderizar, além de decidir se o hero mostra estatísticas, tags ou nada. Isso evita que as páginas pareçam o mesmo template recolorido. Seções como `personas` e `planos` só aparecem quando o produto tem esses campos em `data/produtos.js`. Detalhes de cada variante em `docs/design-system.md`.
 
 ## Rotas
 

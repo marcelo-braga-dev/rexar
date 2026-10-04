@@ -157,3 +157,16 @@ Consome `produto.beneficios` (`{ titulo, descricao }`).
 ### Seções condicionais
 
 `personas` (`{ persona, entrega }`) e `planos` (`{ nome, publico, inclui }`) só renderizam se existirem no produto em `data/produtos.js` — ver `CLAUDE.md` para o schema completo.
+
+## Página de vendas dedicada (GD Solar ERP)
+
+`Components/Produto/GdSolarErpLanding.jsx` não usa as variantes acima. Os padrões dela:
+
+- **Cor de ação:** botões de conversão sempre em `brand-500` (laranja). O verde (`green-*`) identifica o produto em selos, ícones, checks e gradientes, e nunca é usado em botões de CTA.
+- **Ritmo de fundos:** as seções alternam `bg-white` / `bg-dark-50`, com uma seção escura no meio (`from-dark-900 to-green-950`) e gradientes verdes no hero e no CTA final.
+- **Título de seção:** componente local `SectionTitle` (selo + `h2` `text-3xl md:text-4xl` + subtítulo `text-lg`), com variante `light` para fundos escuros.
+- **Antes e depois:** tabela de 3 colunas no desktop (tarefa / sem sistema em `dark-50` / com o sistema em `green-50`), que vira um bloco por tarefa no celular.
+- **Cartões:** `rounded-2xl`, `border-dark-100`; ícones em quadrado `bg-green-100 text-green-700`.
+- **Celular:** barra fixa de CTA (`CtaFixoMobile`) e abas de perfil com rolagem horizontal.
+
+Estrutura completa e regras de texto: `docs/gd-solar-erp-pagina-de-vendas.md`.
