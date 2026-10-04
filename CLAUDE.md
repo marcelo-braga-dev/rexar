@@ -55,14 +55,15 @@ Além de `slug`, `nome`, `categoria`, `tagline`, `descricao`, `cor`, `icone`, `p
 
 | Campo | Uso |
 |---|---|
-| `dores` / `resultados` | Arrays **pareados por índice** (mesmo tamanho) — alimentam a seção "Antes/Depois" da página de produto; `dores[i]` sempre corresponde a `resultados[i]` |
+| `dores` / `resultados` (+ `temas` no GD Solar ERP) | Arrays **pareados por índice** (mesmo tamanho) — alimentam a seção "Antes/Depois" da página de produto; `dores[i]` sempre corresponde a `resultados[i]` |
 | `comoFunciona` | 3-5 passos do fluxo do produto |
 | `diferenciais` | Bullets de "por que escolher" |
 | `faq` | Perguntas frequentes (accordion) |
-| `personas` *(opcional)* | `{ persona, entrega }` — só nos produtos com essa segmentação documentada (hoje: LeveLead CRM, GD Solar ERP) |
-| `planos` *(opcional)* | `{ nome, publico, inclui }` — sugestão de tiers sem preço fixo, venda consultiva (hoje: GD Solar ERP, Solar Shop) |
+| `personas` *(opcional)* | `{ persona, entrega }` — só nos produtos com essa segmentação documentada (hoje: LeveLead CRM) |
+| `planos` *(opcional)* | `{ nome, publico, inclui }` — sugestão de tiers sem preço fixo, venda consultiva (hoje: Solar Shop) |
+| `modulos`, `automacoes`, `alertas`, `portais`, `exemploCobranca`, `seguranca`, `segmentos`, `contratacao` *(GD Solar ERP)* | Alimentam a página de vendas dedicada (`Components/Produto/GdSolarErpLanding.jsx`); `beneficios` ali são **ganhos do empresário**, não funcionalidades |
 
-`Pages/Produto.jsx` renderiza cada produto com uma combinação diferente de variantes visuais (config `PRODUTO_STYLE` no topo do arquivo) para que as 4 páginas não pareçam o mesmo template recolorido — ver `docs/design-system.md`.
+`Pages/Produto.jsx` delega para uma página de vendas própria os produtos listados em `LANDINGS` (hoje só o GD Solar ERP) e renderiza os demais com uma combinação diferente de variantes visuais (config `PRODUTO_STYLE` no topo do arquivo) para que as páginas não pareçam o mesmo template recolorido — ver `docs/design-system.md`.
 
 Conteúdo detalhado (tabelas de dor por perfil, módulos completos, mensagens-chave) está em `docs/produtos.md`; `produtos.js` é a versão condensada usada no site.
 

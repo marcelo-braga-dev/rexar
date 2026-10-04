@@ -130,27 +130,27 @@ Para criar ritmo visual, as seções alternam entre:
 
 ## Variantes de página de produto (`Pages/Produto.jsx`)
 
-Cada produto usa uma combinação diferente das variantes abaixo (definida em `PRODUTO_STYLE`, no topo de `Produto.jsx`), para que as 4 páginas de produto não sejam o mesmo template recolorido.
+Produtos listados em `LANDINGS` (topo de `Produto.jsx`) têm página de vendas própria e não usam o template — hoje só o GD Solar ERP (`Components/Produto/GdSolarErpLanding.jsx`). Os demais usam uma combinação diferente das variantes abaixo (definida em `PRODUTO_STYLE`, no topo de `Produto.jsx`), para que as 4 páginas de produto não sejam o mesmo template recolorido.
 
 ### Comparação "Antes/Depois"
 
 Consome os arrays pareados `produto.dores` e `produto.resultados` (mesmo índice = mesmo tópico).
 
 - **`linha`** — cards lado a lado (dor à esquerda em `bg-dark-50` com ✕, resultado à direita em `c.tint` com ✓), conectados por uma seta no meio. Usado em LeveLead CRM e Solar Shop.
-- **`timeline`** — trilha vertical com pontos conectados por uma linha; a dor aparece riscada (`line-through`) acima do resultado em destaque. Usado em GD Solar ERP e CRM Solar.
+- **`timeline`** — trilha vertical com pontos conectados por uma linha; a dor aparece riscada (`line-through`) acima do resultado em destaque. Usado no CRM Solar.
 
 ### Grade de "Funcionalidades"
 
 Consome `produto.beneficios` (`{ titulo, descricao }`).
 
 - **`grid`** — cards 3 colunas com número em badge `c.soft`. Padrão, usado no LeveLead CRM (9 módulos).
-- **`tiles`** — 2 colunas, cards maiores com ícone numerado à esquerda do texto (estilo tile de dashboard). Usado no GD Solar ERP.
+- **`tiles`** — 2 colunas, cards maiores com ícone numerado à esquerda do texto (estilo tile de dashboard). Disponível, sem produto usando hoje.
 - **`chips`** — carrossel horizontal com scroll-snap (`overflow-x-auto`), cards de largura fixa. Usado no Solar Shop (estilo vitrine/e-commerce).
 - **`checklist`** — lista compacta de uma coluna só, com ✓ em vez de número. Usado no CRM Solar (poucos itens, evita grade "vazia").
 
 ### Hero
 
-- **`stats`** — chips com números de credibilidade (`bg-white/10 border border-white/20`) abaixo do CTA. LeveLead CRM e GD Solar ERP.
+- **`stats`** — chips com números de credibilidade (`bg-white/10 border border-white/20`) abaixo do CTA. LeveLead CRM.
 - **`tags`** — chips de feature na cor do produto (`c.iconBg` com opacidade). Solar Shop.
 - **`clean`** — sem chips extras. CRM Solar.
 
