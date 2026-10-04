@@ -14,7 +14,8 @@ class PageController extends Controller
 
     public function sobre(): Response
     {
-        return Inertia::render('Sobre');
+        return Inertia::render('Sobre')
+            ->withViewData(['seo' => config('seo.paginas.sobre', [])]);
     }
 
     public function produtos(): Response
@@ -24,7 +25,8 @@ class PageController extends Controller
 
     public function produto(string $slug): Response
     {
-        return Inertia::render('Produto', ['slug' => $slug]);
+        return Inertia::render('Produto', ['slug' => $slug])
+            ->withViewData(['seo' => config("seo.produtos.{$slug}", [])]);
     }
 
     public function contato(): Response
