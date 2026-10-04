@@ -1,14 +1,21 @@
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
 import AppLayout from '../Components/Layout/AppLayout';
 import Badge from '../Components/UI/Badge';
-import { produtos, getProduto } from '../data/produtos';
+import FaqItem from '../Components/UI/FaqItem';
+import OutrosProdutos from '../Components/Produto/OutrosProdutos';
+import GdSolarErpLanding from '../Components/Produto/GdSolarErpLanding';
+import { getProduto } from '../data/produtos';
 
 const colorMap = {
     blue:   { hero: 'from-blue-900 to-dark-900',   accent: 'text-blue-400',  badge: 'blue',   iconBg: 'bg-blue-500', solid: 'bg-blue-500',   text: 'text-blue-600',   tint: 'bg-blue-50',   soft: 'bg-blue-100 text-blue-700' },
     green:  { hero: 'from-green-900 to-dark-900',  accent: 'text-green-400', badge: 'green',  iconBg: 'bg-green-500', solid: 'bg-green-500',  text: 'text-green-600',  tint: 'bg-green-50',  soft: 'bg-green-100 text-green-700' },
     orange: { hero: 'from-orange-900 to-dark-900', accent: 'text-orange-400',badge: 'orange', iconBg: 'bg-orange-500', solid: 'bg-orange-500', text: 'text-orange-600', tint: 'bg-orange-50', soft: 'bg-orange-100 text-orange-700' },
     yellow: { hero: 'from-yellow-900 to-dark-900', accent: 'text-yellow-400',badge: 'yellow', iconBg: 'bg-yellow-500', solid: 'bg-yellow-500', text: 'text-yellow-600', tint: 'bg-yellow-50', soft: 'bg-yellow-100 text-yellow-700' },
+};
+
+/* Produtos com página de vendas própria (fora do template genérico abaixo). */
+const LANDINGS = {
+    'gd-solar-erp': GdSolarErpLanding,
 };
 
 /* Personalidade de cada produto: cada um usa uma composição diferente de seções e cards. */
@@ -18,12 +25,6 @@ const PRODUTO_STYLE = {
         funcionalidades: 'grid',
         hero: 'stats',
         stats: ['92 permissões nomeadas', '4 perfis de acesso', '9 módulos integrados'],
-    },
-    'gd-solar-erp': {
-        comparacao: 'timeline',
-        funcionalidades: 'tiles',
-        hero: 'stats',
-        stats: ['9 automações diárias', '4 portais dedicados', 'Alerta anti-oversell de energia'],
     },
     'solar-shop': {
         comparacao: 'linha',
@@ -82,29 +83,6 @@ const IconArrow = () => (
         <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
     </svg>
 );
-
-function FaqItem({ pergunta, resposta }) {
-    const [open, setOpen] = useState(false);
-    return (
-        <div className="border border-dark-100 rounded-xl overflow-hidden bg-white">
-            <button
-                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
-                onClick={() => setOpen(!open)}
-            >
-                <span className="font-semibold text-dark-900 text-sm sm:text-base">{pergunta}</span>
-                <svg
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                    className={`w-4 h-4 flex-shrink-0 text-dark-400 transition-transform ${open ? 'rotate-180' : ''}`}
-                >
-                    <polyline points="6 9 12 15 18 9" />
-                </svg>
-            </button>
-            {open && (
-                <p className="px-5 pb-4 text-dark-500 text-sm leading-relaxed">{resposta}</p>
-            )}
-        </div>
-    );
-}
 
 /* ── Variantes de "Antes / Depois" ── */
 
@@ -251,11 +229,13 @@ export default function Produto({ slug }) {
         );
     }
 
+    const Landing = LANDINGS[produto.slug];
+    if (Landing) return <Landing produto={produto} />;
+
     const c = colorMap[produto.cor];
     const style = PRODUTO_STYLE[produto.slug] ?? { comparacao: 'linha', funcionalidades: 'grid', hero: 'clean' };
     const Comparacao = COMPARACAO_COMPONENTS[style.comparacao];
     const Funcionalidades = FUNCIONALIDADES_COMPONENTS[style.funcionalidades];
-    const outrosProdutos = produtos.filter((p) => p.slug !== produto.slug);
     const whatsappHref = `https://wa.me/5500000000000?text=${encodeURIComponent(`Olá! Quero saber mais sobre o ${produto.nome}.`)}`;
 
     return (
@@ -492,28 +472,7 @@ export default function Produto({ slug }) {
                 </div>
             </section>
 
-            {/* Cross-sell */}
-            <section className="py-16 bg-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                    <div className="text-center mb-10">
-                        <h2 className="text-2xl font-bold text-dark-900 mb-2">Conheça também</h2>
-                        <p className="text-dark-500">Outros sistemas do ecossistema Rexar que podem completar sua operação.</p>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        {outrosProdutos.map((p) => (
-                            <Link
-                                key={p.slug}
-                                href={`/produtos/${p.slug}`}
-                                className="bg-dark-50 border border-dark-100 rounded-xl p-6 hover:border-brand-200 hover:bg-brand-50 transition-all group"
-                            >
-                                <Badge color={p.cor} className="mb-3 text-xs">{p.categoria.split(' · ')[0]}</Badge>
-                                <h3 className="font-bold text-dark-900 mb-2 group-hover:text-brand-600 transition-colors">{p.nome}</h3>
-                                <p className="text-dark-500 text-sm leading-relaxed">{p.tagline}</p>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <OutrosProdutos slugAtual={produto.slug} />
         </AppLayout>
     );
 }
