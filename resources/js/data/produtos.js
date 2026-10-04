@@ -74,7 +74,7 @@ export const produtos = [
         slug: 'gd-solar-erp',
         nome: 'GD Solar ERP',
         categoria: 'ERP · Energia Solar por Assinatura',
-        tagline: 'Da fatura ao Pix, sem planilha no meio. Sua empresa de energia por assinatura cresce sem crescer a equipe.',
+        tagline: 'A energia é solar. A gestão, automática. O sistema que organiza sua empresa de energia por assinatura, da venda ao recebimento.',
         descricao:
             'O GD Solar ERP organiza toda a empresa de energia solar por assinatura em um só lugar: a venda, os clientes, as usinas, as contas de luz, a cobrança e o recebimento. O trabalho repetitivo — ler conta, calcular desconto, emitir boleto, conferir pagamento — passa a ser feito pelo sistema. Sua equipe fica livre para vender e atender.',
         cor: 'green',

@@ -212,7 +212,7 @@ export default function GdSolarErpLanding({ produto }) {
                             {produto.nome} · para empresas de energia solar por assinatura
                         </p>
                         <h1 className="text-4xl md:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.1] mb-6">
-                            Da conta de luz ao Pix, <span className="text-green-300">sem planilha no meio.</span>
+                            A energia é solar.<br /><span className="text-green-300">A gestão, automática.</span>
                         </h1>
                         <p className="text-lg text-green-50/80 leading-relaxed mb-8 max-w-xl">
                             Sua equipe para de digitar conta de luz, calcular desconto e conferir extrato.
