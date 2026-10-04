@@ -31,10 +31,13 @@ A página responde, nesta ordem, às perguntas do empresário:
 
 | # | Seção | Fundo | Campo em `produtos.js` | Papel na venda |
 |---|---|---|---|---|
-| 1 | **Hero**: título "A energia é solar. A gestão, automática.", subtítulo, CTAs, cartão de cobrança ilustrativo | gradiente verde-escuro | `exemploCobranca`, `segmentos` | Promessa clara e identificação do público |
+| 1 | **Hero**: `<h1>` com "Sistema de gestão para Geração Distribuída (GD)" + slogan "A geração é distribuída. A gestão, centralizada.", subtítulo e CTAs centralizados; abaixo, a tela real "Gestão de energia" em moldura de navegador com o celular do cliente sobreposto | gradiente verde-escuro | `telas.hero`, `telas.heroCelular`, `segmentos` | Promessa clara e identificação do público |
 | 2 | **Antes e depois**: tabela tarefa → sem sistema → com o sistema | branco | `temas`, `dores`, `resultados` (pareados por índice) | Empresário se reconhece no problema |
+| 2b | **Faturas no automático**: texto + 4 destaques ("Sem baixar fatura"…) + fluxo e-mail → importação → leitura → aprovação + telas do histórico de importação e da fatura lida | gradiente verde-claro | `faturasAutomaticas`, `telas.importacao`, `telas.faturaLida` | Principal diferencial operacional: nada de upload manual |
 | 3 | **Como funciona**: 4 passos do mês | cinza-claro | `comoFunciona` | Mostra o mecanismo, de forma simples |
 | 4 | **Resultados**: 6 ganhos + CTA | branco | `beneficios` | Ganhos no negócio (tempo, caixa, crescimento) |
+| 4b | **Veja por dentro**: abas por funcionalidade (alocação, geração, cobrança, alertas, relatórios, propostas, atendimento, sua marca, celular), cada uma com título, texto e a tela real | cinza-claro | `galeria` | Mostra o produto funcionando; reduz a dúvida "como é o sistema?" |
+| 4c | **Explore a plataforma**: galeria com rolagem horizontal das 45 telas, filtros por perfil (Todas, Administrador, Consultor, Cliente, Produtor, Celular), barra de progresso, setas e tela ampliada (lightbox) com navegação por setas, teclado (← → Esc) e deslize no celular + CTA | branco | `data/gdSolarErpTelas.js` (`telas`, `AREAS`) — componente `GaleriaTelas` | Prova de que o sistema é completo, para quem quer ver tudo |
 | 5 | **Automático**: situação → reação do sistema + alertas | escuro | `automacoes`, `alertas` | Valor percebido: o sistema trabalha sozinho |
 | 6 | **Um acesso para cada pessoa**: abas por perfil | cinza-claro | `portais` | A empresa inteira usa, cada um vê o seu |
 | 7 | **Tudo incluso**: grade de funcionalidades | branco | `modulos` (com `nota` opcional → rodapé com `*`) | Inventário para quem quer detalhe |
@@ -55,7 +58,15 @@ Os fundos alternam (branco / cinza-claro / escuro) para separar as seções visu
 - **Barra fixa no celular** (`CtaFixoMobile`): aparece depois de 700 px de rolagem, só abaixo do breakpoint `md`.
 - **Formulário pré-preenchido:** os CTAs levam a `/contato?produto=gd-solar-erp`, e `Pages/Contato.jsx` já seleciona o produto.
 - **Redutores de risco:** "Demonstração gratuita · Sem compromisso · Resposta em até 1 dia útil" no hero e no CTA final.
-- **Prova visual:** o cartão do hero mostra a conta de luz virando cobrança paga (R$ 480 − 15% = R$ 408). Os valores são calculados a partir de `exemploCobranca` e ficam marcados como **ilustrativos**.
+- **Prova visual:** 18 telas reais da plataforma (dados fictícios de demonstração) no hero, na seção de faturas, na galeria "Veja por dentro" e em cada aba de perfil. Componentes `BrowserFrame` (moldura de navegador) e `PhoneFrame` (celular).
+
+### Telas da plataforma
+
+- **Origem:** pasta `docs/prints/` do repositório do produto (o README de lá descreve cada tela), capturada em outubro de 2026 com dados fictícios de demonstração, que podem ser publicados. Para novas telas, copie o PNG de lá, gere as versões `.webp` e não versione os originais.
+- **Publicadas em:** `public/images/produtos/gd-solar-erp/telas/*.webp` (45 telas) e miniaturas em `public/images/produtos/gd-solar-erp/miniaturas/` (720 px no desktop, 300 px no celular), usadas no trilho da galeria. Desktop recortado no topo (≈780 px de altura útil) e reduzido para 1600 px de largura; celular para 600 px. Total ≈3,4 MB somando versão grande e miniatura; as grandes só carregam ao ampliar.
+- **Critérios de seleção:** nas seções da página, uma tela por funcionalidade que o empresário valoriza. A galeria "Explore a plataforma" mostra todas as telas publicáveis. Para adicionar uma tela: gerar o `.webp` grande e a miniatura em `miniaturas/` e incluir uma linha `tela(arquivo, título, área)` em `data/gdSolarErpTelas.js`.
+- **Não publicar telas com:** "Casa Verde" (nome interno) ou o nome do provedor de pagamento. Hoje isso exclui o painel admin, o relatório executivo, o relatório de economia, os modelos de WhatsApp, a gestão financeira e as telas de pagamento. No cockpit, o trecho "da Casa Verde" do subtítulo foi apagado; na tela de pagamento do celular, o recorte para antes do código Pix.
+- **Fatura em revisão:** recortada antes do campo "Origem: manual", que contradiz a mensagem de entrada automática.
 - **Preço:** a pergunta "Quanto custa?" é respondida de forma consultiva (depende do tamanho da operação; proposta após a demonstração). Não publicar valores sem aprovação.
 
 ---
@@ -73,7 +84,7 @@ Os fundos alternam (branco / cinza-claro / escuro) para separar as seções visu
 
 **Promessas — limites atuais do produto** (detalhes em `docs/produtos.md` → "O que prometer"):
 
-- **Leitura automática de faturas:** só **Copel**. As demais concessionárias entram por envio do PDF. O aviso aparece como nota `*` em "Tudo incluso" e na FAQ.
+- **Entrada automática de faturas:** destacar que as faturas entram e são lidas sozinhas, todo mês, pela integração com o e-mail, sem baixar, subir ou digitar. **Não citar concessionárias pelo nome e não dizer "todas as concessionárias"**: hoje o leitor automático do produto é específico da Copel (`CopelBillParserService` no casaverde). A FAQ diz que as concessionárias da operação são confirmadas na demonstração. Decisão do responsável pelo produto em 04/10/2026.
 - **Pagamentos:** boleto e Pix "integrados a bancos e plataformas de pagamento", com baixa automática. **Não citar provedor** (hoje o Mercado Pago, mas a arquitetura aceita outros), não dizer "qualquer banco" e não mencionar cartão de crédito.
 - **WhatsApp:** mensagens prontas que o consultor envia com um clique. Nunca "disparo automático" ou "chatbot".
 - **Aplicativo:** funciona no navegador do celular. Não há app nas lojas.
@@ -83,7 +94,24 @@ Os fundos alternam (branco / cinza-claro / escuro) para separar as seções visu
 
 ---
 
-## 5. Dados em `produtos.js`
+## 5. Nicho e SEO
+
+**Nicho:** Geração Distribuída (GD) de energia solar. Termos-chave: *Geração Distribuída*, *GD*, *gestão de GD*, *geração compartilhada*, *usinas de GD*, *cooperativa/consórcio de GD*, *energia por assinatura*, *créditos de energia*, *Lei 14.300*.
+
+Onde eles aparecem:
+
+| Lugar | Conteúdo |
+|---|---|
+| `<title>` | "GD Solar ERP — Sistema de gestão para Geração Distribuída (GD) — Rexar" |
+| `<meta description>` | `tagline` do produto |
+| `<h1>` | "GD Solar ERP · Sistema de gestão para Geração Distribuída (GD)" + slogan, no mesmo elemento |
+| Títulos de seção | "…sua operação de GD", "Toda a cadeia da GD…", "Gestão completa de Geração Distribuída", "Feito para Geração Distribuída" |
+| FAQ | "O que é Geração Distribuída (GD) e para quem é o sistema?" e "Qual a diferença para um ERP ou CRM comum?" |
+| Faixa "Feito para" | `segmentos` (cooperativas de GD, consórcios de geração compartilhada…) |
+
+**SEO no servidor:** o site não tem SSR. Por isso, título, descrição, link canônico, Open Graph e dados estruturados (`SoftwareApplication`, em JSON-LD) vêm de `config/seo.php` e são renderizados em `resources/views/app.blade.php`. O `PageController::produto` passa os dados via `withViewData`. Quando a página monta, o Inertia substitui o título e a descrição (a `<meta description>` do servidor tem `data-inertia="description"` para não duplicar). **Ao mudar título ou `tagline` do GD Solar ERP, atualize também `config/seo.php`.**
+
+## 6. Dados em `produtos.js`
 
 Campos usados apenas por esta página (os demais seguem o schema comum descrito no `CLAUDE.md`):
 
@@ -95,35 +123,38 @@ Campos usados apenas por esta página (os demais seguem o schema comum descrito 
 | `automacoes` | `{ gatilho, resposta }[]` | Situação de negócio → o que o sistema faz (sem horários técnicos) |
 | `alertas` | `string[]` | Situações em que a equipe é avisada |
 | `portais` | `{ perfil, quem, itens[], ganho }[]` | Uma aba por perfil |
-| `exemploCobranca` | `{ competencia, energiaCompensada, descontoPercentual }` | Números do cartão do hero |
+| `telas` | `{ hero, heroCelular, importacao, faturaLida }` — cada um `{ src, alt }` | Telas fixas do hero e da seção de faturas |
+| `galeria` | `{ aba, titulo, descricao, imagem, alt }[]`; a aba de celular usa `celulares: { src, alt }[]` | Seção "Veja por dentro" |
+| `portais[].imagem` / `portais[].celular` | `{ src, alt }` | Tela de cada perfil (o celular aparece sobreposto) |
 | `seguranca` | `string[]` | Pontos de confiança em linguagem simples |
 | `segmentos` | `string[]` | Faixa "Feito para" no hero |
+| `faturasAutomaticas` | `{ etapas: { titulo, descricao }[], destaques: string[] }` | Seção "Faturas no automático"; os ícones das etapas seguem a ordem (`FATURA_ICONS`, 4 itens) |
 | `contratacao` | `{ titulo, descricao }[]` | Passos de "Como começar" |
 
 Ao adicionar um 7º ganho em `beneficios`, inclua também um ícone em `GANHO_ICONS`.
 
 ---
 
-## 6. Como manter
+## 7. Como manter
 
 **Mudou o produto no repositório `casaverde`:**
 
 1. Releia `docs/apresentacao-comercial.html`, principalmente a seção "O que prometer".
 2. Atualize `docs/produtos.md` (seção 2) com o conteúdo técnico completo.
 3. Atualize `produtos.js` com a versão para o empresário, seguindo as regras da seção 4.
-4. Se uma limitação deixar de existir (ex.: leitura de outras concessionárias), remova a `nota` correspondente e a ressalva na FAQ.
+4. Se a leitura automática passar a cobrir outras concessionárias, revise a regra da seção 4 e a FAQ ("Preciso subir as faturas…"). O campo `nota` de `modulos` continua disponível para ressalvas.
 
 **Conferência visual:** `npm run build` + `php artisan serve` e revisar `/produtos/gd-solar-erp` no desktop e no celular (largura de 390 px).
 
 ---
 
-## 7. Pendências e próximos passos
+## 8. Pendências e próximos passos
 
 | Item | Situação |
 |---|---|
 | Número de WhatsApp | Provisório (`5500000000000`), igual ao resto do site |
 | "Deixamos tudo pronto" (Como começar, passo 2) | Confirmar se a Rexar faz a configuração inicial para o cliente |
 | Prova social / case | O produto já opera numa empresa real de energia por assinatura. Falta autorização para divulgar (mesmo sem nome) e criar a seção de prova |
-| Screenshots reais | Imagens do painel e do portal do cliente deixariam a página mais concreta; hoje só existe o cartão ilustrativo do hero |
+| Telas com nome interno | Para publicar o painel admin, o relatório de economia e os modelos de WhatsApp, é preciso regerar os prints sem "Casa Verde" nos textos |
 | Meios de pagamento | Se houver cartão ou bancos específicos que possam ser citados, atualizar textos e FAQ |
 | **Envio do formulário de contato** | **Crítico:** `Pages/Contato.jsx` envia para `POST /api/contato`, mas essa rota não existe (não há `routes/api.php`). Todos os CTAs de demonstração chegam a um formulário que não entrega o contato |

@@ -214,8 +214,11 @@ Sim. Há importação em massa via CSV/Excel para leads e produtos, com históri
 ## 2. GD Solar ERP
 
 **Slug:** `gd-solar-erp`
-**Categoria:** ERP · Energia Solar por Assinatura
-**Tagline:** A energia é solar. A gestão, automática. O sistema que organiza sua empresa de energia por assinatura, da venda ao recebimento.
+**Categoria:** ERP · Geração Distribuída (GD)
+**Tagline:** Sistema de gestão completa para Geração Distribuída (GD): usinas, clientes, faturas, cobrança e pagamento em uma só plataforma.
+**Slogan (hero):** A geração é distribuída. A gestão, centralizada.
+
+> **Posicionamento:** o nicho é **Geração Distribuída (GD)** de energia solar — cooperativas, consórcios de geração compartilhada, comercializadoras de energia por assinatura e gestoras de usinas. "Geração Distribuída" e "GD" devem aparecer no título, na categoria, nos títulos de seção e nos metadados (SEO). "Energia por assinatura" é o modelo de negócio de parte desse público, e não o nicho inteiro.
 
 > **Nota:** O nome interno do repositório é `casaverde`. Usar apenas "GD Solar ERP" em todo contexto público.
 
@@ -295,7 +298,7 @@ Quatro perfis com permissões próprias; consultor só vê a própria carteira e
 
 | Tema | Pode dizer | Evite dizer |
 |---|---|---|
-| Leitura de faturas | Importação automática por e-mail e leitura de faturas da **Copel**; outras concessionárias por envio manual | "Lê faturas de qualquer concessionária" |
+| Leitura de faturas | Faturas entram e são lidas sozinhas pela integração com o e-mail, todo mês, sem upload manual (no site, sem citar concessionária; o leitor automático hoje é da **Copel**) | "Lê faturas de qualquer/todas as concessionárias" |
 | Pagamentos | Boleto e Pix integrados a bancos e plataformas de pagamento, com emissão em um clique e baixa automática (sem citar provedor) | "Integra com qualquer banco", "cartão de crédito" |
 | Emissão de boleto | Em um clique, a partir da cobrança | "Boletos emitidos sozinhos, sem ninguém" |
 | WhatsApp | Mensagens prontas que o consultor envia com um clique | "Disparo automático de WhatsApp", "chatbot" |

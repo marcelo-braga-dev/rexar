@@ -38,6 +38,8 @@ php artisan config:clear # limpar cache de config
 | `resources/js/Components/` | Componentes reutilizáveis |
 | `app/Http/Controllers/PageController.php` | Controller de todas as páginas |
 | `routes/web.php` | Definição de rotas |
+| `config/seo.php` | Título, descrição, Open Graph e JSON-LD renderizados no HTML do servidor (o site não tem SSR) — hoje com entrada para o GD Solar ERP |
+| `resources/js/data/gdSolarErpTelas.js` | Lista das telas da galeria do GD Solar ERP (imagens em `public/images/produtos/gd-solar-erp/telas/`) |
 | `docs/gd-solar-erp-pagina-de-vendas.md` | Página de vendas do GD Solar ERP: estrutura, conversão, regras de texto e pendências |
 
 ## Convenções do projeto
@@ -62,7 +64,7 @@ Além de `slug`, `nome`, `categoria`, `tagline`, `descricao`, `cor`, `icone`, `p
 | `faq` | Perguntas frequentes (accordion) |
 | `personas` *(opcional)* | `{ persona, entrega }` — só nos produtos com essa segmentação documentada (hoje: LeveLead CRM) |
 | `planos` *(opcional)* | `{ nome, publico, inclui }` — sugestão de tiers sem preço fixo, venda consultiva (hoje: Solar Shop) |
-| `modulos`, `automacoes`, `alertas`, `portais`, `exemploCobranca`, `seguranca`, `segmentos`, `contratacao` *(GD Solar ERP)* | Alimentam a página de vendas dedicada (`Components/Produto/GdSolarErpLanding.jsx`, ver `docs/gd-solar-erp-pagina-de-vendas.md`); `temas` rotula as linhas do Antes e depois; `beneficios` ali são **ganhos do empresário**, não funcionalidades |
+| `modulos`, `automacoes`, `alertas`, `portais`, `telas`, `galeria`, `seguranca`, `segmentos`, `contratacao`, `faturasAutomaticas` *(GD Solar ERP)* | Alimentam a página de vendas dedicada (`Components/Produto/GdSolarErpLanding.jsx`, ver `docs/gd-solar-erp-pagina-de-vendas.md`); `temas` rotula as linhas do Antes e depois; `beneficios` ali são **ganhos do empresário**, não funcionalidades |
 
 `Pages/Produto.jsx` delega para uma página de vendas própria os produtos listados em `LANDINGS` (hoje só o GD Solar ERP) e renderiza os demais com uma combinação diferente de variantes visuais (config `PRODUTO_STYLE` no topo do arquivo) para que as páginas não pareçam o mesmo template recolorido — ver `docs/design-system.md`.
 
